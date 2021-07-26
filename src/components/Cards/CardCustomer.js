@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, InputGroup, FormControl, Container, Button } from 'react-bootstrap';
 
-export default function CardProduct() {
-    const customer = {
-        name: '',
-        email: '',
-        cpf: '',
-        street: '',
-        number: '',
-        district: '',
-        city: '',
-        postal: '',
-        state: '',
-        country: ''
-    }
+export default function CardProduct(props) {
+    const [ customer, setCustomer ] = useState(props.currentCustomer);
+
+    const [ address, setAddress ] = useState(props.currentCustomer.address);
+    
+    const handleCustomer = (e) => {
+        const id = e.target.getAttribute('id');
+        const value = e.target.value;
+        let input = { [id]: value, };
+
+        setCustomer({ ...customer, ...input });
+    };
+
+    const handleAddress = (e) => {
+        const id = e.target.getAttribute('id');
+        const value = e.target.value;
+        let input = { [id]: value };
+
+        setAddress({ ...address, ...input});
+    };
+
+
 
     return (
     <Container>
@@ -38,6 +47,7 @@ export default function CardProduct() {
                 placeholder="@"
                 aria-label="Email"
                 value={customer.email}
+                onChange={handleCustomer}
                />
             </InputGroup>
         </Form>
@@ -50,6 +60,7 @@ export default function CardProduct() {
                 placeholder="cpf"
                 aria-label="Email"
                 value={customer.cpf}
+                onChange={handleCustomer}
                />
             </InputGroup>
         </Form>
@@ -62,6 +73,7 @@ export default function CardProduct() {
                 placeholder="Rua"
                 aria-label="street"
                 value={customer.street}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -74,6 +86,7 @@ export default function CardProduct() {
                 placeholder="N."
                 aria-label="number"
                 value={customer.number}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -86,6 +99,7 @@ export default function CardProduct() {
                 placeholder="Bairro"
                 aria-label="district"
                 value={customer.district}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -98,6 +112,7 @@ export default function CardProduct() {
                 placeholder="Cidade"
                 aria-label="city"
                 value={customer.city}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -110,6 +125,7 @@ export default function CardProduct() {
                 placeholder="CEP"
                 aria-label="postal"
                 value={customer.postal}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -122,6 +138,7 @@ export default function CardProduct() {
                 placeholder="Estado"
                 aria-label="state"
                 value={customer.state}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
@@ -134,6 +151,7 @@ export default function CardProduct() {
                 placeholder="País"
                 aria-label="country"
                 value={customer.country}
+                onChange={handleAddress}
                />
             </InputGroup>
         </Form>
