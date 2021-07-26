@@ -4,8 +4,23 @@ import implementos from '../../assets/implementos.jpeg';
 import sementes from '../../assets/sementes.jpeg'
 import epi from '../../assets/epi.jpeg';
 import consultoria from '../../assets/consultoria.jpeg';
+import { useHistory } from 'react-router-dom';
 
 export default function CardHome() {
+    const history = useHistory();
+
+    const customerHandle = () => {
+        setTimeout(() => {
+            history.push('/customer')
+        }, 1000)
+    };
+
+    const productHandle = () => {
+        setTimeout(() => {
+            history.push('/products')
+        }, 1000)
+    };
+    
     return (
         <>
         <CardGroup className="text-center">
@@ -39,13 +54,13 @@ export default function CardHome() {
             <Card>
                 <Card.Body>
                     <Card.Title> Cadastrar Cliente</Card.Title>
-                    <Button>Cadastre</Button>
+                    <Button type="button" onClick={customerHandle}>Cadastre</Button>
                 </Card.Body>
             </Card>
             <Card>
                 <Card.Body>
                     <Card.Title> Cadastrar Produto</Card.Title>
-                    <Button>Cadastre</Button>
+                    <Button type="button" onClick={productHandle}>Cadastre</Button>
                 </Card.Body>
             </Card>
         </CardGroup>
